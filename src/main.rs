@@ -8,8 +8,13 @@ fn exec(dst: &str) -> Result<()> {
     let mut text_list: Vec<EncodeInput> = Vec::new();
     let mut total_tokens = 0;
 
-    for entry in glob(&format!("{}/**/*.md", dst)).unwrap().filter_map(Result::ok) {
-        let r = std::fs::read_to_string(entry)?;
+    for entry in glob(&format!("{}/**/*.md", dst)).unwrap() {
+        let path = match entry {
+            Ok(path) => path,
+            Err(_) => continue
+        };
+
+        let r = std::fs::read_to_string(path)?;
         text_list.push(r.into());
 
         if text_list.len() == 200 {
