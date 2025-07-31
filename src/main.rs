@@ -8,7 +8,7 @@ fn exec(dst: &str) -> Result<()> {
     let mut text_list: Vec<EncodeInput> = Vec::new();
     let mut total_tokens = 0;
 
-    for entry in glob(&format!("{}/**/*.md", dst)).unwrap() {
+    for entry in glob(&format!("{}/**/*.md", dst))? {
         let path = match entry {
             Ok(path) => path,
             Err(_) => continue
@@ -32,6 +32,7 @@ fn exec(dst: &str) -> Result<()> {
 
 fn main() {
     let mut args = std::env::args();
+    args.next();
     let dst = args.next().unwrap();
 
     exec(&dst).unwrap();
