@@ -34,6 +34,6 @@ fn main() {
     let mut args = std::env::args();
     args.next();
     let dst = args.next().unwrap();
-
+    println!("Processing files in directory: {}", dst);
     exec(&dst).unwrap();
 }
