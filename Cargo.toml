@@ -1,0 +1,9 @@
+[package]
+name = "md2slice"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+glob = "0.3"
+tokenizers = { version = "0.21", features = ["http", "rustls-tls"] }
+anyhow = "1"
